@@ -5,8 +5,10 @@ mcp = FastMCP(name="NMAP-MCP")
 
 # Whitelist of allowed nmap flags
 ALLOWED_FLAGS = {
-    # Scan types
+    # Port scanning
     "-sS", "-sT", "-sA", "-sW", "-sM", "-sU", "-sN", "-sF", "-sX",
+    # Host discovery
+    "-sn", "-PE", "-PP", "-PM", "-PS", "-PA", "-PY"
     # Port specification
     "-p", "--port-ratio", "--ports",
     # Host discovery
@@ -77,7 +79,7 @@ def _validate_nmap_args(args: list[str]) -> None:
 
         i += 1
 
-@mcp.tool
+@mcp.tool(name = "nmap_scan", description = "Execute nmap scan with validated arguments.")
 def nmap_scan(args: list[str]) -> str:
     """Execute nmap scan with validated arguments."""
     try:
