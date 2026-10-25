@@ -1,5 +1,5 @@
 # base image
-FROM python:3.13-slim
+FROM python:3.14-slim
 
 # update system and install nmap
 RUN apt-get update && apt-get install -y nmap libcap2-bin && rm -rf /var/lib/apt/lists/*
